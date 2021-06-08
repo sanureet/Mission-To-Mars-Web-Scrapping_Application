@@ -1,6 +1,6 @@
 import time
 from bs4 import BeautifulSoup 
-from splinter import browser
+from splinter import Browser
 from webdriver_manager.chrome import ChromeDriverManager
 import pandas as pd
 import requests
@@ -31,10 +31,17 @@ def init_browser():
     mars_image_url = 'https://spaceimages-mars.com'
     browser.visit(mars_image_url)
     html_images = browser.html
-#mars_image_soup = BeautifulSoup(image_html, 'html.parser')
+    browser.links.find_by_partial_text('FULL IMAGE').click()
+
+    html_images = browser.html
+
     soup = BeautifulSoup(html_images, 'html.parser')
-    featured_url = soup.find('img', class_='thumb')['src']
-    featured_image_url = f'https://spaceimages-mars.com{featured_url}'
+
+    featured_url = soup.find('img', class_='headerimage fade-in')['src']
+    featured_image_url = f'https://spaceimages-mars.com/{featured_url}'
+
+
+    
     print (featured_image_url) 
 
 #Mars facts
@@ -49,13 +56,13 @@ def init_browser():
     tables_df = tables[0]
     tables_df.column = ['Mars', 'Earth']
 
-    tables_df
+    html=tables_df.to_html()
 
 ## Mars Hemisphere
 
     hemispheres_url= 'https://marshemispheres.com/'
 
-    browser.visit(hemisphere_url)
+    browser.visit(hemispheres_url)
     html = browser.html
 
     soup = BeautifulSoup(html, 'html.parser')
@@ -78,6 +85,26 @@ def init_browser():
         hemisphere_image_urls
 
     return hem_data
+
+    # Store data in a dictionary
+    mars_data = {
+        "news_title": news_title,
+        "news_paragraph": news_paragraph,
+        "featured_image_url": featured_image_url,
+        "html": html,
+        "hemisphere_image_urls": hemisphere_image_urls
+
+
+
+
+    }
+
+    # Close the browser after scraping
+    browser.quit()
+
+    # Return results
+    return mars_data
+
 
     
 
