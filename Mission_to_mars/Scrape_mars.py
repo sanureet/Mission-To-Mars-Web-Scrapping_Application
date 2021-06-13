@@ -84,7 +84,7 @@ def init_browser():
         hemisphere_image_urls.append(hem_data)
         hemisphere_image_urls
 
-    return hem_data
+    # return hem_data
 
     # Store data in a dictionary
     mars_data = {
