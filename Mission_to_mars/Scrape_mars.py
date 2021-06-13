@@ -56,7 +56,7 @@ def init_browser():
     tables_df = tables[0]
     tables_df.column = ['Mars', 'Earth']
 
-    html=tables_df.to_html()
+    mars_table=tables_df.to_html()
 
 ## Mars Hemisphere
 
@@ -91,7 +91,7 @@ def init_browser():
         "news_title": news_title,
         "news_paragraph": news_paragraph,
         "featured_image_url": featured_image_url,
-        "html": html,
+        "mars_table": mars_table,
         "hemisphere_image_urls": hemisphere_image_urls
 
 
