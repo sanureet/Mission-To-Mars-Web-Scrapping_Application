@@ -45,7 +45,7 @@
             <div class="table-responsive-xl">
             <h4>MARS FACTS</h4>
 
-            <table>{{ data.tables|safe }}</table>
+            <table>{{ data.mars_facts|safe }}</table>
 
           </div>
 
@@ -63,9 +63,9 @@
         {% for hemisphere in data.hemisphere_image_urls %}
         <div class="col-md-6">
           <div class="card text-white bg-dark" style="margin: 30px;">
-            <img class="card-img-top" src="{{ hemisphere.image_urls }}" />
+            <img class="card-img-top" src="{{hemisphere.image_urls }}" />
             <div class="card-body">
-              <p class="card-text">{{ hemisphere.title }}</p>
+              <p class="card-text">{{hemisphere.title }}</p>
             </div>
 
 
